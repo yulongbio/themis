@@ -1,0 +1,6 @@
+library(ggplot2)
+lod.df=read.csv('../Data/Mean_vaf_lod_by_feature.csv')
+lod.df$Feature=factor(lod.df$Feature,levels=rev(c('MFR','FSI','CAFF','FEM','THEMIS')))
+png('Mean_vaf_lod_by_feature.png',width = 4000,height = 2500,res = 600)
+ggplot(lod.df,aes(y=Feature,x=LOD))+geom_pointrange(aes(xmin=lower,xmax=upper))+labs(x='Clinical Limit of Detection (mean VAF of cfDNA)')+ylab(NULL)+xlim(0,0.02)+theme_bw()
+dev.off()
